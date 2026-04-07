@@ -1,192 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>El Faro</title>
+<meta charset="UTF-8">
+<title>El Faro</title>
 
-    <style>
-        body {
-            font-family: Arial;
-            background-color: lightblue;
-        }
+<!-- Fuente externa -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
-        h1 {
-            text-align: center;
-            color: darkblue;
-        }
+<style>
 
-        nav {
-            text-align: center;
-            margin: 20px;
-        }
+/* ===== CONFIGURACIÓN GENERAL DE LA PÁGINA ===== */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+}
 
-        nav a {
-            margin: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            color: black;
-        }
+/* ===== MENU ===== */
+nav {
+    background: white;
+    text-align: center;
+    padding: 15px;
+}
 
-        table {
-            width: 90%;
-            margin: auto;
-            border-collapse: collapse;
-            background: white;
-        }
+nav a {
+    margin: 15px;
+    color: black;
+    text-decoration: underline;
+}
 
-        th, td {
-            padding: 10px;
-            border: 1px solid black;
-            text-align: left;
-        }
+/* Hover menú */
+nav a:hover {
+    font-weight: bold;
+    text-decoration: none;
+}
 
-        th {
-            background-color: lightblue;
-        }
+/* ===== TITULOS ===== */
+h1, h2 {
+    text-align: center;
+}
 
-        h2, h3 {
-            text-align: center;
-        }
+/* ===== CONTENEDOR DE ARTÍCULOS USANDO GRID ===== */
+/*Se utilizó CSS Grid como técnica avanzada de layout y se documentó el código mediante comentarios para facilitar su comprensión. ===== */
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
 
-        video, audio {
-            display: block;
-            margin: 20px auto;
-        }
-    </style>
+/* ===== ESTILO DE CADA ARTÍCULO ===== */
+.articulo {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+/* ===== EFECTO HOVER ===== */
+/* Hover artículos */
+.articulo:hover {
+    background: black;
+    color: white;
+}
 
+/* ===== FOOTER ===== */
+footer {
+    background-color: #c9d2d0;
+    color: #31231e;
+    text-align: center;
+    padding: 15px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    .contenedor {
+        grid-template-columns: 1fr;
+    }
+}
+/* ===== HEADER ===== */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Logo */
+.logo {
+    width: 60px;
+}
+</style>
 </head>
 
 <body>
 
-    <!-- PORTADA -->
+    <!-- ===== ENCABEZADO CON LOGO ===== -->
+<header class="header">
+
+    <img src="logo.jpg" alt="Logo El Faro" class="logo">
+
     <h1>Periódico El Faro</h1>
-    <center>
-        <img src="logo.jpg" alt="Logo El Faro" width="200">
-    </center>
-    
-    <hr>
 
-    <!-- MENU -->
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#deporte">Deporte</a>
-        <a href="#negocios">Negocios</a>
-    </nav>
+</header>
 
-    <hr>
+<!-- ===== SECCIÓN NOTICIAS ===== -->
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#deporte">Deporte</a>
+    <a href="#negocios">Negocios</a>
+</nav>
 
-    <!-- NOTICIAS GENERALES -->
-    <h2 id="inicio">Noticias Generales</h2>
+<!-- ===== INICIO ===== -->
+<h2 id="inicio">Noticias Generales</h2>
 
-    <table>
-        <tr>
-            <th>Título</th>
-            <th>Categoría</th>
-            <th>Contenido</th>
-        </tr>
+<div class="contenedor">
 
-        <tr>
-            <td>El tiempo que tendrá Santiago durante Semana Santa: Hay un día que se sale de lo normal</td>
-            <td>Actualidad</td>
-            <td>Según el pronóstico del Centro Meteorológico Noruego consultado este lunes, la semana sigue con un martes 31 de marzo estable, con cielo despejado, temperatura máxima de 28°C y mínima de 16°C. Sin lluvia y con vientos leves de 4 m/s, las condiciones son ideales para quienes deban trabajar estos días previos al feriado.</td>
-        </tr>
+    <div class="articulo">
+        <h3>Clima en Santiago</h3>
+        <p><b>Categoría:</b> Actualidad</p>
+        <p>Se esperan temperaturas variables durante Semana Santa en Santiago.</p>
+    </div>
 
-        <tr>
-            <td>Nuevo parque urbano mejora calidad de vida</td>
-            <td>Ciudad</td>
-            <td>Un nuevo parque urbano ha sido inaugurado recientemente, ofreciendo a la comunidad un espacio recreativo con áreas verdes, juegos infantiles y zonas deportivas. Vecinos del sector destacan el impacto positivo que tendrá este proyecto en la calidad de vida, fomentando la actividad física y el encuentro familiar en un entorno seguro y sustentable.</td>
-        </tr>
+    <div class="articulo">
+        <h3>Transporte en la ciudad</h3>
+        <p><b>Categoría:</b> Actualidad</p>
+        <p>Se anuncian mejoras en el sistema de transporte público.</p>
+    </div>
 
-        <tr>
-            <td>Avances en inteligencia artificial sorprenden al mundo</td>
-            <td>Tecnología</td>
-            <td>La inteligencia artificial continúa avanzando a pasos agigantados, con nuevas herramientas capaces de automatizar tareas complejas y mejorar la productividad en distintos sectores. Empresas tecnológicas están invirtiendo fuertemente en esta área, lo que ha generado tanto entusiasmo como preocupación por el impacto que podría tener en el empleo y la sociedad.</td>
-        </tr>
-    </table>
+    <div class="articulo">
+        <h3>Educación en Chile</h3>
+        <p><b>Categoría:</b> Actualidad</p>
+        <p>Nuevas reformas buscan mejorar la calidad educativa.</p>
+    </div>
 
-    <!-- VIDEO -->
-    <h3>Video destacado</h3> 
-    <h3>🏆 Santiago Wanderers Sub 20 campeón</h3>
+</div>
 
-<p>
-El equipo Sub 20 de Santiago Wanderers hizo historia al consagrarse campeón de la Copa Libertadores juvenil. 
-En un partido intenso, logró imponerse en la final, destacando el talento de sus jugadores y dejando en alto el nombre de Chile a nivel internacional.
-</p>
-        <video width="400" controls>
-            <source src="video.mp4" type="video/mp4">
-            Tu navegador no soporta video.
-        </video>
+<!-- ===== DEPORTES ===== -->
+<h2 id="deporte">Deportes</h2>
 
-    <!-- AUDIO -->
-    <h3>Audio noticia</h3>
-    <h3>Pronóstico del clima en Santiago para Semana Santa</h3>
-        <p>Escucha el informe del tiempo para los próximos días en Santiago, con información relevante para planificar actividades durante Semana Santa.</p>
-        <audio controls>
-            <source src="audio.mp3" type="audio/mpeg">
-            Tu navegador no soporta audio.
-        </audio>
+<div class="contenedor">
 
-    <hr>
+    <div class="articulo">
+        <h3>Wanderers campeón</h3>
+        <p><b>Categoría:</b> Deportes</p>
+        <p>Santiago Wanderers Sub 20 logró un histórico triunfo en la Libertadores.</p>
+    </div>
 
-    <!-- DEPORTES -->
-    <h2 id="deporte">Deportes</h2>
+    <div class="articulo">
+        <h3>Fútbol nacional</h3>
+        <p><b>Categoría:</b> Deportes</p>
+        <p>El campeonato chileno continúa con intensos partidos.</p>
+    </div>
 
-    <table>
-        <tr>
-            <th>Título</th>
-            <th>Categoría</th>
-            <th>Contenido</th>
-        </tr>
+    <div class="articulo">
+        <h3>Selección chilena</h3>
+        <p><b>Categoría:</b> Deportes</p>
+        <p>La Roja prepara nuevos desafíos internacionales.</p>
+    </div>
 
-        <tr>
-            <td>Equipo chileno Santiago Wanderes se corona campeón de la copa libertadores sub 20</td>
-            <td>Fútbol</td>
-            <td>En una emocionante final disputada ante miles de espectadores, un equipo chileno logró consagrarse campeón la copa libertdores sub 20 . El partido estuvo marcado por la intensidad y el buen juego, destacando la actuación de varios jugadores jovenes de la cantera del equipo de valparaiso  que fueron fundamentales para alcanzar el triunfo.</td>
-        </tr>
+</div>
 
-        <tr>
-            <td>Deportistas cuestionan a Natalia Duco por defensa del rodeo: “No es deporte, es maltrato animal”</td>
-            <td>Rodeo</td>
-            <td>La ministra del Deporte, Natalia Duco, enfrenta una ola de críticas por parte de destacados deportistas luego de manifestar su respaldo al rodeo y proponer un plan de desarrollo para esta práctica tradicional. Las reacciones surgieron tras su participación en el 77° Campeonato Nacional de Rodeo, conocido como el “Champion”, realizado en la Medialuna de Rancagua.</td>
-        </tr>
+<!-- ===== NEGOCIOS ===== -->
+<h2 id="negocios">Negocios</h2>
 
-        <tr>
-            <td>Atletas chilenos se preparan para competencia mundial</td>
-            <td>Atletismo</td>
-            <td>Un grupo de atletas nacionales se encuentra entrenando intensamente para representar a Chile en una importante competencia internacional. Las autoridades deportivas han destacado el esfuerzo y compromiso de los deportistas, quienes buscan dejar en alto el nombre del país.</td>
-        </tr>
-    </table>
+<div class="contenedor">
 
-    <hr>
+    <div class="articulo">
+        <h3>Emprendimiento digital</h3>
+        <p><b>Categoría:</b> Negocios</p>
+        <p>Nuevas startups crecen en el mercado tecnológico.</p>
+    </div>
 
-    <!-- NEGOCIOS -->
-    <h2 id="negocios">Negocios</h2>
+    <div class="articulo">
+        <h3>Economía chilena</h3>
+        <p><b>Categoría:</b> Negocios</p>
+        <p>Se proyecta crecimiento económico para el próximo año.</p>
+    </div>
 
-    <table>
-        <tr>
-            <th>Título</th>
-            <th>Categoría</th>
-            <th>Contenido</th>
-        </tr>
+    <div class="articulo">
+        <h3>Innovación empresarial</h3>
+        <p><b>Categoría:</b> Negocios</p>
+        <p>Empresas adoptan nuevas tecnologías para mejorar procesos.</p>
+    </div>
 
-        <tr>
-            <td>Emprendimiento chileno logra expansión internacional</td>
-            <td>Emprendimiento</td>
-            <td>Una startup chilena ha logrado expandirse a mercados internacionales gracias a su innovador modelo de negocio. La empresa ha recibido inversión extranjera, lo que le permitirá seguir creciendo y generar nuevas oportunidades laborales.</td>
-        </tr>
+</div>
 
-        <tr>
-            <td>Nuevo centro comercial impulsa la economía local</td>
-            <td>Comercio</td>
-            <td>La inauguración de un nuevo centro comercial ha generado un impacto positivo en la economía local, creando empleos y atrayendo a nuevos inversionistas. Autoridades destacan que este tipo de proyectos contribuye al desarrollo urbano y comercial de la zona.</td>
-        </tr>
-
-        <tr>
-            <td>Variación del dólar afecta precios en el mercado</td>
-            <td>Economía</td>
-            <td>El reciente aumento en el valor del dólar ha comenzado a impactar en los precios de diversos productos, especialmente aquellos importados. Expertos recomiendan a los consumidores planificar sus compras y estar atentos a posibles cambios en el mercado.</td>
-        </tr>
-    </table>
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>Periódico El Faro - 2026</p>
+</footer>
 
 </body>
 </html>
