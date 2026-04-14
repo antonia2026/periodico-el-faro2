@@ -90,7 +90,53 @@ footer {
 .logo {
     width: 60px;
 }
+/* ===== ESTILO FECHA Y HORA ===== */
+#fechaHora {
+    font-size: 14px;
+    color: gray;
+}
+/* ===== FORMULARIO AGREGAR NOTICIA ===== */
+.formulario {
+    text-align: center;
+    margin: 20px;
+}
 
+.formulario input {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 250px;
+}
+
+.formulario button {
+    padding: 8px 15px;
+}
+/* ===== CONTADOR ===== */
+#contador {
+    font-weight: bold;
+}
+
+.contador-texto {
+    font-size: 14px;
+    color: gray;
+    margin-left: 20px;
+}
+h2 {
+    text-align: center;
+}
+/* ===== FORMULARIO CONTACTO ===== */
+.contacto {
+    text-align: center;
+    margin: 20px;
+}
+
+.contacto input, 
+.contacto textarea {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 250px;
+}
 </style>
 </head>
 
@@ -101,8 +147,12 @@ footer {
 
     <img src="logo.jpg" alt="Logo El Faro" class="logo">
 
-    <h1>Periódico El Faro</h1>
+    <div>
+        <h1>Periódico El Faro</h1>
 
+        <!-- FECHA Y HORA -->
+        <p id="fechaHora"></p>
+    </div>
 </header>
 
 <!-- ===== SECCIÓN NOTICIAS ===== -->
@@ -115,7 +165,23 @@ footer {
 <!-- ===== INICIO ===== -->
 <h2 id="inicio">Noticias Generales</h2>
 
-<div class="contenedor">
+<!-- CONTADOR DE ARTÍCULOS -->
+<p class="contador-texto">
+    Total de artículos: <span id="contador">0</span>
+</p>
+
+
+<!-- ===== FORMULARIO PARA AGREGAR NOTICIAS ===== -->
+<div class="formulario">
+<h2>Agregar noticia</h2>
+
+<input type="text" id="titulo" placeholder="Título"><br><br>
+<input type="text" id="descripcion" placeholder="Descripción"><br><br>
+
+<button onclick="agregarNoticia()">Agregar</button>
+</div>
+<!-- CONTENEDOR -->
+<div class="contenedor" id="listaNoticias">
 
     <div class="articulo">
         <h3>Clima en Santiago</h3>
@@ -192,10 +258,90 @@ Bam Bam se las cantó clarita al Ingeniero, Pablo Milad y todo el mundo por el t
 
 </div>
 
+<!-- ===== FORMULARIO DE CONTACTO ===== -->
+<div class="contacto">
+
+    <h2>Contacto</h2>
+
+    <input type="text" id="nombre" placeholder="Tu nombre">
+    <textarea id="mensaje" placeholder="Escribe tu mensaje"></textarea>
+
+    <button onclick="enviarMensaje()">Enviar</button>
+
+</div>
 <!-- ===== FOOTER ===== -->
 <footer>
     <p>Periódico El Faro - 2026</p>
 </footer>
+
+<script>
+      // ===== FECHA Y HORA EN VIVO =====
+function actualizarHora() {
+    const ahora = new Date();
+
+    let fecha = ahora.toLocaleDateString();
+    let hora = ahora.toLocaleTimeString();
+
+    document.getElementById("fechaHora").innerText = fecha + " " + hora;
+}
+
+// Actualiza cada segundo
+setInterval(actualizarHora, 1000);
+// ===== AGREGAR NOTICIAS DINÁMICAS =====
+function agregarNoticia() {
+    let titulo = document.getElementById("titulo").value;
+    let descripcion = document.getElementById("descripcion").value;
+
+    // VALIDACIÓN
+    if (titulo === "" || descripcion === "") {
+        alert("Por favor completa todos los campos");
+        return;
+    }
+
+    let contenedor = document.getElementById("listaNoticias");
+
+    let nueva = document.createElement("div");
+    nueva.className = "articulo";
+
+    nueva.innerHTML = `
+        <h3>${titulo}</h3>
+        <p><b>Categoría:</b> General</p>
+        <p>${descripcion}</p>
+    `;
+
+    contenedor.appendChild(nueva);
+
+    // LIMPIAR FORMULARIO
+    document.getElementById("titulo").value = "";
+    document.getElementById("descripcion").value = "";
+
+    // ACTUALIZAR CONTADOR
+    actualizarContador();
+}
+// ===== CONTADOR =====
+function actualizarContador() {
+    let cantidad = document.getElementsByClassName("articulo").length;
+    document.getElementById("contador").innerText = cantidad;
+}
+
+// Ejecutar al cargar
+window.onload = actualizarContador;
+
+// ===== FORMULARIO =====
+function enviarMensaje() {
+    let nombre = document.getElementById("nombre").value;
+    let mensaje = document.getElementById("mensaje").value;
+    if (nombre === "" || mensaje === "") {
+        alert("Por favor completa todos los campos");
+        return;
+    }
+    alert("Gracias " + nombre + ", tu mensaje fue enviado.");
+
+    // LIMPIAR FORMULARIO
+    document.getElementById("nombre").value = "";
+    document.getElementById("mensaje").value = "";
+}
+</script>
 
 </body>
 </html>
