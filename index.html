@@ -9,19 +9,72 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
 </head>
+<style>
+.ticker {
+  overflow: hidden;
+  position: relative;
+}
+
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: tickerMove 25s linear infinite;
+}
+
+@keyframes tickerMove {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+/* ===== HOVER SOMBRA + ZOOM ===== */
+
+/* estado normal */
+.card,
+.box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* efecto hover */
+.card:hover,
+.box:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 8px 20px rgba(209, 169, 148, 0.3);
+}
+/* CAMBIO DE TÍTULO */
+.card:hover .title,
+.box:hover strong {
+  color: rgb(255, 0, 76);
+  font-weight: bold;
+}
+</style>
 
 <body>
 
 <!-- ===== AVISO SUPERIOR ===== -->
-<div class="notification is-danger has-text-centered">
-  🔴 Última hora: Noticias importantes en desarrollo
+<div class="notification is-danger ticker">
+  <div class="ticker-track">
+    🟢 Última hora: Noticias en desarrollo: NACIONAL: Contraloría difunde listado completo de municipios con gasto superior al promedio en celebraciones / ESPECTACULOS: La actriz Diane Kruger, de 49 años, causó sensación con un vestido digno de una obra de arte / INTERNACIONAL: Trump confirma que alto al fuego con Irán expira el miércoles y advierte que es “altamente improbable” extenderlo 
+  </div>
 </div>
 
 <!-- ===== HEADER ===== -->
 <section class="hero is-dark">
   <div class="hero-body has-text-centered">
+
+    <!-- LOGO -->
+    <img src="logo3.jpg" alt="Logo El Faro" style="width:100px; margin-bottom:10px;">
+
+    <!-- TITULO -->
     <h1 class="title">Periódico El Faro</h1>
     <p class="subtitle">Noticias de actualidad, deportes y negocios</p>
+
+    <!-- FECHA -->
+    <p id="fechaHora" class="has-text-grey-light"></p>
+
   </div>
 </section>
 
@@ -32,31 +85,74 @@
       <a href="#inicio" class="navbar-item">Inicio</a>
       <a href="#deportes" class="navbar-item">Deportes</a>
       <a href="#negocios" class="navbar-item">Negocios</a>
+      <a href="#agregar" class="navbar-item">Agregar Noticia</a>
     </div>
   </div>
 </nav>
 
-<!-- ===== CONTENIDO PRINCIPAL ===== -->
+<!-- ===== ACCESOS RÁPIDOS (REQUERIMIENTO CLAVE) ===== -->
+<section class="section">
+  <div class="container">
+    <div class="columns">
+
+      <div class="column">
+        <div class="card has-text-centered">
+          <div class="card-content">
+            <p class="title">Deportes</p>
+            <a href="#deportes" class="button is-danger">Ir a Deportes</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card has-text-centered">
+          <div class="card-content">
+            <p class="title">Negocios</p>
+            <a href="#negocios" class="button is-link">Ir a Negocios</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== INICIO ===== -->
 <section class="section" id="inicio">
   <div class="container">
 
     <div class="columns">
 
-      <!-- ===== NOTICIA DESTACADA ===== -->
+      <!-- NOTICIA DESTACADA -->
       <div class="column is-8">
-        <div class="card">
-          <div class="card-content">
-            <p class="title">Clima en Santiago</p>
-            <p class="subtitle">Actualidad</p>
-            <p>
-              Mañana se esperan cielos despejados en Santiago, con temperaturas entre 14°C y 27°C.
-              Durante la tarde aumentará la nubosidad con vientos moderados.
-            </p>
-          </div>
-        </div>
-      </div>
 
-      <!-- ===== NOTICIAS SECUNDARIAS ===== -->
+  <!-- NOTICIA FIJA (NO SE BORRA) -->
+  <div class="card">
+    <div class="card-content">
+      <p class="title">Clima en Santiago</p>
+      <p>
+        Mañana se esperan cielos despejados en Santiago, con temperaturas entre 14°C y 27°C.
+      </p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <p class="title">Deportes : Titan Forest Patagonia
+</p>
+      <p>
+        Por segundo año consecutivo: La Patagonia vuelve a ser epicentro mundial del ciclismo con el regreso de la Titan Forest.
+      </p>
+    </div>
+  </div>
+
+  <!-- SEPARADOR -->
+ 
+  <!-- CONTENEDOR DINÁMICO (IMPORTANTE) -->
+  <div id="listaNoticias"></div>
+
+</div>
+
+      <!-- NOTICIAS SECUNDARIAS -->
       <div class="column is-4">
 
         <div class="box">
@@ -67,6 +163,10 @@
         <div class="box">
           <p><strong>Educación en Chile</strong></p>
           <p>Nuevas reformas buscan mejorar la calidad educativa.</p>
+        </div>
+         <div class="box">
+          <p><strong>Cultura</strong></p>
+          <p>Panoramas gratuitos este 25 y 26 de abril: Mercado de Colores Yungay, Noche de Librerías en el MUT y festival gastronómico en Patronato.</p>
         </div>
 
       </div>
@@ -106,7 +206,12 @@
           <p>Zamorano pide cambios urgentes en la Roja.</p>
         </div>
       </div>
-
+       <div class="column">
+        <div class="box">
+          <p><strong>Deportes  mls</strong></p>
+          <p>Ex DT de la U dirigirá a Messi: Asumirá en Inter Miami tras renuncia de Javier Mascherano.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -143,16 +248,173 @@
   </div>
 </section>
 
+<!-- ===== CONTACTO ===== -->
+<section class="section">
+  <div class="container">
+    <h2 class="title has-text-centered">Contacto</h2>
+
+    <div class="columns is-centered">
+      <div class="column is-6">
+
+        <div class="box">
+
+          <div class="field">
+            <label class="label">Nombre</label>
+            <div class="control">
+              <input class="input" type="text" id="nombre" placeholder="Tu nombre">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Mensaje</label>
+            <div class="control">
+              <textarea class="textarea" id="mensaje" placeholder="Escribe tu mensaje"></textarea>
+            </div>
+          </div>
+
+          <div class="field has-text-centered">
+            <button class="button is-primary" onclick="enviarMensaje()">
+              Enviar
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="agregar">
+  <div class="container">
+    <h2 class="title has-text-centered">Agregar Noticia</h2>
+
+    <div class="columns is-centered">
+      <div class="column is-6">
+
+        <div class="box">
+
+          <div class="field">
+            <label class="label">Título</label>
+            <div class="control">
+              <input class="input" type="text" id="titulo" placeholder="Título">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Descripción</label>
+            <div class="control">
+              <textarea class="textarea" id="descripcion" placeholder="Descripción"></textarea>
+            </div>
+          </div>
+
+          <div class="field has-text-centered">
+            <button class="button is-primary" onclick="agregarNoticia()">
+              Agregar
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="content has-text-centered">
-    <p>
-      <strong>El Faro</strong> © 2026  
-      <br>
-      Noticias confiables al instante
-    </p>
+    <p><strong>El Faro</strong> © 2026</p>
   </div>
 </footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+
+// ===== GUARDAR EN LOCALSTORAGE =====
+function obtenerNoticias() {
+    return JSON.parse(localStorage.getItem("noticias")) || [];
+}
+
+function guardarNoticias(noticias) {
+    localStorage.setItem("noticias", JSON.stringify(noticias));
+}
+
+// ===== MOSTRAR NOTICIAS =====
+function mostrarNoticias() {
+    let contenedor = document.getElementById("listaNoticias");
+    contenedor.innerHTML = "";
+
+    let noticias = obtenerNoticias();
+
+    noticias.forEach((noticia, index) => {
+
+        let div = document.createElement("div");
+        div.className = "box";
+
+        div.innerHTML = `
+            <p><strong>${noticia.titulo}</strong></p>
+            <p>${noticia.descripcion}</p>
+
+            <button class="button is-small is-warning" onclick="editarNoticia(${index})">Editar</button>
+            <button class="button is-small is-danger" onclick="eliminarNoticia(${index})">Eliminar</button>
+        `;
+
+        contenedor.appendChild(div);
+    });
+}
+
+// ===== AGREGAR =====
+function agregarNoticia() {
+    let titulo = document.getElementById("titulo").value;
+    let descripcion = document.getElementById("descripcion").value;
+
+    if (titulo === "" || descripcion === "") {
+        alert("Completa todos los campos");
+        return;
+    }
+
+    let noticias = obtenerNoticias();
+
+    noticias.push({ titulo, descripcion });
+
+    guardarNoticias(noticias);
+    mostrarNoticias();
+
+    document.getElementById("titulo").value = "";
+    document.getElementById("descripcion").value = "";
+}
+
+// ===== ELIMINAR =====
+function eliminarNoticia(index) {
+    let noticias = obtenerNoticias();
+
+    noticias.splice(index, 1);
+
+    guardarNoticias(noticias);
+    mostrarNoticias();
+}
+
+// ===== EDITAR =====
+function editarNoticia(index) {
+    let noticias = obtenerNoticias();
+
+    let nuevoTitulo = prompt("Editar título:", noticias[index].titulo);
+    let nuevaDesc = prompt("Editar descripción:", noticias[index].descripcion);
+
+    if (nuevoTitulo && nuevaDesc) {
+        noticias[index].titulo = nuevoTitulo;
+        noticias[index].descripcion = nuevaDesc;
+
+        guardarNoticias(noticias);
+        mostrarNoticias();
+    }
+}
+
+// ===== CARGAR AL INICIO =====
+window.onload = function() {
+    mostrarNoticias();
+};
+
+</script>
 
 </body>
 </html>
